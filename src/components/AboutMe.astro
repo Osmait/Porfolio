@@ -1,32 +1,32 @@
 ---
-import Icon from "astro-icon";
 import Card from "./Card/index.astro";
 ---
 
 <Card colSpan="md:col-span-1" rowSpan="md:row-span-3" title="About me">
+  <p class="text-sm font-light">
+    Enthusiastic about systems and a Linux lover, I occasionally dive into
+    programming in low-level languages like C and Rust. My fascination lies in
+    understanding how things work from the inside.
+  </p>
   <div class="flex flex-col gap-2">
-    <p class="text-sm font-light">
-      Hi, I'm Gianmarco, a front-end software developer from Italy.
-      <br>
-      My primary tools of choice includes:
-      <ul class="list-disc list-inside">
-        <li role="link">JavaScript</li>
-        <li role="link">React</li>
-        <li role="link">Solidjs</li>
-        <li role="link">Astro</li>
-        <li role="link">svelte</li>
-        <li role="link">Nodejs</li>
-      </ul>
-    </p>
-    <p class="text-sm font-light">
-      Beyond coding, I'm passionate about design and 3D modeling and traveling.
-      An unusual hobby of mine is collecting vintage passports, they're
-      interesting pieces of history to me.
-    </p>
-    <p class="text-sm font-light">
-      While I have some preferred tools, I always choose the best one for the
-      job, even if it's not on my usual list. My goal is to find the right
-      solution for each project.
-    </p>
+    <p>Programming Languages</p>
+    <ul class="list-disc list-inside">
+      <li role="link">TypeScript</li>
+      <li role="link">Java</li>
+      <li role="link">GO</li>
+      <li role="link">Python</li>
+    </ul>
+    <p>Tools</p>
+    <ul class="list-disc list-inside">
+      <li role="link">Nestjs</li>
+      <li role="link">SpringBoot</li>
+      <li role="link">Gin</li>
+      <li role="link">FastApi</li>
+      <li role="link">Docker</li>
+      <li role="link">PostgreSQL</li>
+      <li role="link">Linux</li>
+      <li role="link">Nextjs</li>
+      <li role="link">Reactjs</li>
+    </ul>
   </div>
 </Card>
