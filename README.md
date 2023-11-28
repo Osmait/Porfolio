@@ -2,12 +2,6 @@
 
 ## A personal portfolio website made using `Astro`.
 
-<p align="left">
-    <img width="500" height="auto" src="https://i.imgur.com/qB3UV2j.png" alt="homepagescreenshot" />
-</p>
-
-To view a demo example, **[click here](https://gianmarco.xyz/)**
-
 ## Features
 
 - Modern and Minimal and sleek UI Design
