@@ -1,0 +1,69 @@
+---
+import Card from "./Card/index.astro";
+const projects = [
+  {
+    name: "Social Network",
+    link: "https://github.com/Osmait/redsocialMicroservices",
+    tecnologis: [
+      "Golang",
+      "TypeScript",
+      "Nextjs",
+      "React",
+      "Java",
+      "Python",
+      "Docker",
+      "Kubernetes",
+      "WebSocket",
+      "rabbitMQ",
+      "Prometheus",
+      "Grafana",
+      "Postgres",
+    ],
+  },
+
+  {
+    name: "Prestamos App api",
+    link: "https://github.com/Osmait/prestamosSB-api",
+    tecnologis: ["TypeScript", "Java", "Nextjs", "React", "Postgres"],
+  },
+  {
+    name: "Gestor Presupuesto",
+    link: "https://github.com/Osmait/GestorDePresupuesto",
+    tecnologis: [
+      "Golang",
+      "TypeScript",
+      "Astro",
+      "React",
+      "Nextjs",
+      "Postgres",
+    ],
+  },
+  {
+    name: "Ecommerce",
+    link: "https://github.com/Osmait/ecommerce",
+    tecnologis: ["TypeScript ", "Nestjs", "Postgres"],
+  },
+];
+---
+
+<Card
+  colSpan="md:col-span-2"
+  rowSpan="md:row-span-1"
+  title="Projects" 
+>
+  {
+    projects.map((p) => (
+      <ul>
+        <li class="flex ">
+        <a href={p.link} target="_blank" class="hover:text-primary-500">{p.name} </a> 
+        <li>
+      </ul>
+    ))
+  }
+</Card>
+
+
+<style>
+
+
+</style>

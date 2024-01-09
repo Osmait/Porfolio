@@ -6,6 +6,8 @@ import ContactsCard from "../components/ContactsCard.astro";
 import TimeZone from "../components/TimeZoneCard.astro";
 import AboutMe from "../components/AboutMe.astro";
 import Now from "../components/Now.astro";
+
+import Projects from "../components/Projects.astro";
 ---
 
 <script>
@@ -44,21 +46,6 @@ import Now from "../components/Now.astro";
     <AboutMe />
     <ContactsCard />
     <TimeZone />
-    <Card
-      colSpan="md:col-span-1"
-      rowSpan="md:row-span-1"
-      title="Project"
-      body="Currently WIP"
-    />
-    <Now />
-    <Card colSpan="md:col-span-1" rowSpan="md:row-span-1">
-      <p class="text-xs">
-        © 2023 · Crafted with ♥️ using <a
-          href="https://astro.build/"
-          target="_blank"
-          class="text-red-500">Astro</a
-        >
-      </p>
-    </Card>
+    <Projects />
   </main>
 </Layout>
