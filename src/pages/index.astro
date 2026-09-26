@@ -1,51 +1,611 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card/index.astro";
-import IntroCard from "../components/IntroCard.astro";
-import ContactsCard from "../components/ContactsCard.astro";
-import TimeZone from "../components/TimeZoneCard.astro";
-import AboutMe from "../components/AboutMe.astro";
-import Now from "../components/Now.astro";
+import Base from "../layouts/Base.astro";
+import EventDisplay from "../components/EventDisplay.astro";
+import Logbook from "../components/Logbook.astro";
+import Footer from "../components/Footer.astro";
+import { PROFILE } from "../data/profile";
+import { PROJECTS, KIND_LABEL, techEnergy } from "../data/projects";
+import { getPosts, toLite } from "../lib/posts";
 
-import Projects from "../components/Projects.astro";
+const posts = (await getPosts()).map(toLite);
+const featured = PROJECTS.filter((p) => p.featured);
+const smaller = PROJECTS.filter((p) => !p.featured);
+const energy = techEnergy();
+const calib = energy.filter((t) => t.n >= 2);
+const singles = energy.filter((t) => t.n === 1).map((t) => t.name);
+const fmt = (d: string) => new Date(d + (d.length === 7 ? "-01" : "") + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+const since = fmt(PROFILE.role.start);
 ---
 
-<script>
-  import { stagger, spring, timeline, TimelineDefinition } from "motion";
-  const cards = document.querySelectorAll(".card");
-
-  const sequence = [
-    [
-      ".loaderRef",
-      { opacity: 0, pointerEvents: "none" },
-      { easing: "ease-out" },
-    ],
-    [
-      cards,
-      { y: ["40%", "0%"], opacity: [0, 1] },
-      {
-        at: "-0.1",
-        duration: 0.4,
-        delay: stagger(0.3),
-        easing: spring({ velocity: 100, stiffness: 50, damping: 10 }),
-      },
-    ],
-  ];
-
-  timeline(sequence as TimelineDefinition);
-</script>
-
-<Layout
-  title="Jose Saul Burgos Backend Developer"
-  description="I am a passionate software development enthusiast with a specialized focus on the backend. While my professional career is in its early stages, my enthusiasm and dedication to learning and growing in the world of backend development are evident in every project I undertake."
+<Base
+  title="José Saúl Burgos · Backend engineer"
+  description="José Saúl Burgos (Osmait), backend engineer. Reliable services and distributed systems in Go, Java and TypeScript, plus native Linux apps and developer tools in Rust and Zig."
 >
-  <main
-    class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
-  >
-    <IntroCard />
-    <AboutMe />
-    <ContactsCard />
-    <TimeZone />
-    <Projects />
+  <main id="main">
+    <div id="top"></div>
+    <EventDisplay posts={posts} />
+
+    <section class="sec" id="logbook" aria-labelledby="h-log">
+      <header class="sec-h">
+        <h2 id="h-log">Logbook</h2>
+        <p>Notes on backend and systems internals, traced from the outside in.</p>
+      </header>
+      <Logbook posts={posts} limit={5} />
+      {posts.length > 5 && <a class="more" href="/blog">All {posts.length} entries</a>}
+    </section>
+
+    <section class="sec" id="tracks" aria-labelledby="h-trk">
+      <header class="sec-h">
+        <h2 id="h-trk">Tracks</h2>
+        <p>Public repositories only. Straight tracks are the projects I would show first; the rest curl out earlier and are named when you isolate them.</p>
+      </header>
+      <div class="tracks">
+        {
+          featured.map((p) => (
+            <article class="trow">
+              <svg width="72" height="24" viewBox="0 0 72 24" aria-hidden="true" class={p.kind === "backend" ? "c" : "y"}>
+                <path d="M2 12H70" stroke-width="1.6" />
+                {[10, 24, 38, 52, 66].map((x) => (
+                  <rect x={x - 1.5} y="9" width="3" height="6" />
+                ))}
+                <circle cx="2" cy="12" r="2" fill="#E8ECF1" />
+              </svg>
+              <div class="t-main">
+                <h3>
+                  <a href={`https://github.com/${p.repo}`}>{p.title}</a>
+                </h3>
+                <p class={`t-kind ${p.kind === "backend" ? "c" : "y"}`}>
+                  {KIND_LABEL[p.kind]} · updated {fmt(p.updated)}
+                </p>
+                <p class="t-sum">{p.summary}</p>
+                <ul class="t-hi">
+                  {p.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+                {p.note && <p class="t-note">{p.note}</p>}
+              </div>
+              <div class="t-side">
+                <ul class="tags">
+                  {p.tech.map((t) => (
+                    <li>{t}</li>
+                  ))}
+                </ul>
+                <p class="t-links">
+                  <a href={`https://github.com/${p.repo}`}>github.com/{p.repo}</a>
+                  {p.demo && <a href={p.demo}>Live demo</a>}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <h3 class="sub-h">Curling tracks</h3>
+      <ul class="small">
+        {
+          smaller.map((p) => (
+            <li>
+              <a href={`https://github.com/${p.repo}`}>
+                <span class={`s-dot ${p.kind === "backend" ? "c" : "y"}`} aria-hidden="true" />
+                <span class="s-t">{p.title}</span>
+                <span class="s-d">{p.summary}</span>
+                <span class="s-m">{p.tech.slice(0, 5).join(" · ")}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="sec" id="config" aria-labelledby="h-cfg">
+      <header class="sec-h">
+        <h2 id="h-cfg">Detector config</h2>
+        <p>Who is behind the event, and how the instrument is set up.</p>
+      </header>
+      <div class="config">
+        <div class="about">
+          <p>
+            I am a backend engineer who would rather open the box than trust the label. When something is slow or strange, I
+            want to know which query, which lock, which syscall.
+          </p>
+          <p>
+            At work I build services with Java, Spring Boot, Rust, TypeScript and Node.js on AWS. On my own time the same curiosity
+            goes one layer down: distributed storage in Go, terminal tools and a SQL engine in Rust, and native Linux apps in
+            Zig. I run Linux everywhere.
+          </p>
+          <p>The logbook is where that curiosity gets written down, one mechanism per entry.</p>
+
+          <h3 class="blk">Service record</h3>
+          <dl class="rec">
+            <div>
+              <dt>{since} – now</dt>
+              <dd>
+                <b>{PROFILE.role.title}</b> · {PROFILE.role.company}
+                <span>{PROFILE.role.arrangement} · company based in {PROFILE.role.companyLocation}</span>
+                <span class="skills">{PROFILE.role.skills.join(" · ")}</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div>
+          <div class="calib">
+            <h3 class="blk">Calorimeter calibration</h3>
+            <p>Energy per technology, counted across the {PROJECTS.length} public projects above.</p>
+            <table class="cal">
+              <tbody>
+                {
+                  calib.map((t) => (
+                    <tr>
+                      <td class="n">{t.name}</td>
+                      <td>
+                        <span class="cells" aria-hidden="true">
+                          {Array.from({ length: calib[0].n }, (_, i) => (
+                            <i class={i < t.n ? "f" : ""} />
+                          ))}
+                        </span>
+                      </td>
+                      <td class="v">
+                        {t.n} of {PROJECTS.length}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="also">
+            <h3 class="blk">Single hits</h3>
+            <p>{singles.join(", ")}.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contact" aria-labelledby="h-con">
+      <div class="contact">
+        <h2 id="h-con">Contact</h2>
+        <div class="body">
+          <p>Backend roles, a question about a project, or a correction to one of my diagrams. Email reaches me fastest.</p>
+          <a class="mail" href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>
+          <ul class="chan">
+            <li><span>GitHub</span><a href={PROFILE.links.github}>github.com/Osmait</a></li>
+            <li><span>LinkedIn</span><a href={PROFILE.links.linkedin}>in/josé-saúl-burgos</a></li>
+            <li><span>X</span><a href={PROFILE.links.x}>@saulburgos20</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
-</Layout>
+  <Footer />
+</Base>
+
+<style>
+  .sec {
+    padding: 96px var(--gut) 88px;
+    border-bottom: 1px solid var(--rule);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .sec-h {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 36px;
+  }
+  .sec-h h2,
+  .contact h2 {
+    margin: 0;
+    font: 620 46px/1 var(--f-label);
+    font-stretch: 86%;
+    letter-spacing: -0.02em;
+  }
+  .sec-h p {
+    margin: 0;
+    color: var(--dim);
+    font-size: 15.5px;
+    max-width: 62ch;
+    justify-self: end;
+    text-align: right;
+  }
+  .more {
+    display: inline-block;
+    margin-top: 20px;
+    font: 600 15px/1 var(--f-label);
+    font-stretch: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid var(--faint);
+    padding-bottom: 5px;
+  }
+
+  .tracks {
+    border-top: 1px solid var(--rule-2);
+  }
+  .trow {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 28px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .trow svg {
+    margin-top: 6px;
+  }
+  .trow svg.c {
+    stroke: var(--cyan);
+    fill: var(--cyan);
+  }
+  .trow svg.y {
+    stroke: var(--yel);
+    fill: var(--yel);
+  }
+  .trow h3 {
+    margin: 0 0 6px;
+    font: 600 27px/1.1 var(--f-label);
+    font-stretch: 88%;
+    letter-spacing: -0.01em;
+  }
+  .trow h3 a {
+    text-decoration: none;
+  }
+  .trow h3 a:hover {
+    text-decoration: underline;
+  }
+  .t-kind {
+    margin: 0 0 12px;
+    font: 500 11.5px/1.4 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .t-kind.c {
+    color: var(--cyan);
+  }
+  .t-kind.y {
+    color: var(--yel);
+  }
+  .t-sum {
+    margin: 0 0 12px;
+    font-size: 16.5px;
+    color: var(--ink);
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+  .t-hi {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 6px;
+    max-width: 64ch;
+  }
+  .t-hi li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .t-hi li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 1px;
+    background: var(--steel);
+  }
+  .t-note {
+    margin: 12px 0 0;
+    font: 400 12.5px/1.5 var(--f-mono);
+    color: var(--dim);
+  }
+  .t-side {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tags li {
+    font: 500 12px/1 var(--f-label);
+    font-stretch: 82%;
+    color: var(--ink-2);
+    border: 1px solid var(--rule-2);
+    padding: 5px 7px 4px;
+  }
+  .t-links {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font: 400 13px/1.5 var(--f-mono);
+  }
+  .t-links a:hover {
+    color: var(--cyan);
+  }
+
+  .sub-h,
+  .blk {
+    margin: 0 0 10px;
+    font: 600 13px/1 var(--f-label);
+    font-stretch: 80%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .sub-h {
+    margin-top: 56px;
+    margin-bottom: 14px;
+  }
+  .small {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+    border-top: 1px solid var(--rule-2);
+  }
+  .small a {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    column-gap: 12px;
+    row-gap: 4px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    height: 100%;
+  }
+  .s-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid;
+    margin-top: 6px;
+    grid-row: 1 / 4;
+  }
+  .s-dot.c {
+    border-color: var(--cyan);
+  }
+  .s-dot.y {
+    border-color: var(--yel);
+  }
+  .s-t {
+    font: 600 18px/1.2 var(--f-label);
+    font-stretch: 90%;
+  }
+  .small a:hover .s-t {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .s-d {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .s-m {
+    font: 400 12px/1.5 var(--f-mono);
+    color: var(--dim);
+  }
+
+  .config {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+  .about p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    max-width: 58ch;
+  }
+  .about p:first-child {
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.55;
+  }
+  .about .blk {
+    margin-top: 36px;
+  }
+  .rec {
+    margin: 0;
+    border-top: 1px solid var(--rule-2);
+  }
+  .rec div {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .rec dt {
+    font: 400 13px/1.7 var(--f-mono);
+    color: var(--dim);
+  }
+  .rec dd {
+    margin: 0;
+    font-size: 16px;
+  }
+  .rec dd b {
+    font-weight: 600;
+  }
+  .rec dd span {
+    display: block;
+    color: var(--dim);
+    font-size: 14.5px;
+    margin-top: 4px;
+  }
+  .rec .skills {
+    font: 400 12.5px/1.6 var(--f-mono);
+    color: var(--ink-2);
+  }
+  .calib > p,
+  .also p {
+    margin: 0 0 16px;
+    color: var(--dim);
+    font-size: 14.5px;
+  }
+  table.cal {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cal td {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  .cal .n {
+    font: 600 15px/1 var(--f-label);
+    font-stretch: 88%;
+    width: 34%;
+  }
+  .cells {
+    display: flex;
+    gap: 3px;
+  }
+  .cells i {
+    display: block;
+    width: 30px;
+    height: 10px;
+    border: 1px solid rgba(229, 72, 59, 0.35);
+  }
+  .cells i.f {
+    background: var(--red);
+    border-color: var(--red);
+  }
+  .cal .v {
+    font: 400 12.5px/1 var(--f-mono);
+    color: var(--dim);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .also {
+    margin-top: 28px;
+  }
+  .also p {
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .body > p {
+    margin: 0 0 22px;
+    color: var(--ink-2);
+    font-size: 17px;
+    max-width: 52ch;
+  }
+  .mail {
+    font: 600 clamp(26px, 4.4vw, 56px)/1.05 var(--f-label);
+    font-stretch: 84%;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 1px solid var(--faint);
+    padding-bottom: 6px;
+    overflow-wrap: anywhere;
+  }
+  .mail:hover {
+    color: var(--yel);
+    border-color: var(--yel);
+  }
+  .chan {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--rule-2);
+  }
+  .chan li {
+    padding: 14px 18px 0 0;
+  }
+  .chan span {
+    display: block;
+    font: 500 11px/1 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 8px;
+  }
+  .chan a {
+    font: 400 14px/1.4 var(--f-mono);
+    overflow-wrap: anywhere;
+  }
+  .chan a:hover {
+    color: var(--cyan);
+  }
+
+  @media (max-width: 1100px) {
+    .trow {
+      grid-template-columns: 56px minmax(0, 1fr);
+    }
+    .t-side {
+      grid-column: 2;
+    }
+  }
+  @media (max-width: 820px) {
+    .sec {
+      padding: 64px var(--gut) 56px;
+    }
+    .sec-h {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .sec-h h2,
+    .contact h2 {
+      font-size: 38px;
+    }
+    .sec-h p {
+      justify-self: start;
+      text-align: left;
+    }
+    .trow {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .trow svg {
+      display: none;
+    }
+    .t-side {
+      grid-column: auto;
+    }
+    .small {
+      grid-template-columns: 1fr;
+    }
+    .config {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+    .rec div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .cells i {
+      width: 16px;
+    }
+    .contact {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .chan {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

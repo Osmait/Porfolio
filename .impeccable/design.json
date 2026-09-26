@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-26T17:50:58.450508+00:00",
+  "title": "Design System: saulburgos.com",
+  "extensions": {
+    "colorMeta": {
+      "vac": {
+        "role": "neutral",
+        "displayName": "Vacuum",
+        "canonical": "#07090d",
+        "tonalRamp": [
+          "oklch(15% 0.010 262)",
+          "oklch(25% 0.010 262)",
+          "oklch(35% 0.010 262)",
+          "oklch(45% 0.010 262)",
+          "oklch(58% 0.010 262)",
+          "oklch(70% 0.010 262)",
+          "oklch(82% 0.010 262)",
+          "oklch(95% 0.010 262)"
+        ]
+      },
+      "vac-2": {
+        "role": "neutral",
+        "displayName": "Vacuum Lift",
+        "canonical": "#0b0e13",
+        "tonalRamp": [
+          "oklch(15% 0.012 261)",
+          "oklch(25% 0.012 261)",
+          "oklch(35% 0.012 261)",
+          "oklch(45% 0.012 261)",
+          "oklch(58% 0.012 261)",
+          "oklch(70% 0.012 261)",
+          "oklch(82% 0.012 261)",
+          "oklch(95% 0.012 261)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "#0a0d12",
+        "tonalRamp": [
+          "oklch(15% 0.012 261)",
+          "oklch(25% 0.012 261)",
+          "oklch(35% 0.012 261)",
+          "oklch(45% 0.012 261)",
+          "oklch(58% 0.012 261)",
+          "oklch(70% 0.012 261)",
+          "oklch(82% 0.012 261)",
+          "oklch(95% 0.012 261)"
+        ]
+      },
+      "code": {
+        "role": "neutral",
+        "displayName": "Code Bed",
+        "canonical": "#0e131a",
+        "tonalRamp": [
+          "oklch(15% 0.016 257)",
+          "oklch(25% 0.016 257)",
+          "oklch(35% 0.016 257)",
+          "oklch(45% 0.016 257)",
+          "oklch(58% 0.016 257)",
+          "oklch(70% 0.016 257)",
+          "oklch(82% 0.016 257)",
+          "oklch(95% 0.016 257)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#e8ecf1",
+        "tonalRamp": [
+          "oklch(15% 0.008 254)",
+          "oklch(25% 0.008 254)",
+          "oklch(35% 0.008 254)",
+          "oklch(45% 0.008 254)",
+          "oklch(58% 0.008 254)",
+          "oklch(70% 0.008 254)",
+          "oklch(82% 0.008 254)",
+          "oklch(95% 0.008 254)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink Two",
+        "canonical": "#c3cad4",
+        "tonalRamp": [
+          "oklch(15% 0.016 257)",
+          "oklch(25% 0.016 257)",
+          "oklch(35% 0.016 257)",
+          "oklch(45% 0.016 257)",
+          "oklch(58% 0.016 257)",
+          "oklch(70% 0.016 257)",
+          "oklch(82% 0.016 257)",
+          "oklch(95% 0.016 257)"
+        ]
+      },
+      "dim": {
+        "role": "neutral",
+        "displayName": "Dim",
+        "canonical": "#8e99a8",
+        "tonalRamp": [
+          "oklch(15% 0.026 256)",
+          "oklch(25% 0.026 256)",
+          "oklch(35% 0.026 256)",
+          "oklch(45% 0.026 256)",
+          "oklch(58% 0.026 256)",
+          "oklch(70% 0.026 256)",
+          "oklch(82% 0.026 256)",
+          "oklch(95% 0.026 256)"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint",
+        "canonical": "#6b7686",
+        "tonalRamp": [
+          "oklch(15% 0.028 258)",
+          "oklch(25% 0.028 258)",
+          "oklch(35% 0.028 258)",
+          "oklch(45% 0.028 258)",
+          "oklch(58% 0.028 258)",
+          "oklch(70% 0.028 258)",
+          "oklch(82% 0.028 258)",
+          "oklch(95% 0.028 258)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#1a212b",
+        "tonalRamp": [
+          "oklch(15% 0.022 257)",
+          "oklch(25% 0.022 257)",
+          "oklch(35% 0.022 257)",
+          "oklch(45% 0.022 257)",
+          "oklch(58% 0.022 257)",
+          "oklch(70% 0.022 257)",
+          "oklch(82% 0.022 257)",
+          "oklch(95% 0.022 257)"
+        ]
+      },
+      "rule-2": {
+        "role": "neutral",
+        "displayName": "Rule Two",
+        "canonical": "#242d39",
+        "tonalRamp": [
+          "oklch(15% 0.025 256)",
+          "oklch(25% 0.025 256)",
+          "oklch(35% 0.025 256)",
+          "oklch(45% 0.025 256)",
+          "oklch(58% 0.025 256)",
+          "oklch(70% 0.025 256)",
+          "oklch(82% 0.025 256)",
+          "oklch(95% 0.025 256)"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Detector Steel",
+        "canonical": "#5c7896",
+        "tonalRamp": [
+          "oklch(15% 0.057 251)",
+          "oklch(25% 0.057 251)",
+          "oklch(35% 0.057 251)",
+          "oklch(45% 0.057 251)",
+          "oklch(58% 0.057 251)",
+          "oklch(70% 0.057 251)",
+          "oklch(82% 0.057 251)",
+          "oklch(95% 0.057 251)"
+        ]
+      },
+      "cyan": {
+        "role": "primary",
+        "displayName": "Detector Cyan",
+        "canonical": "#3fd3e0",
+        "tonalRamp": [
+          "oklch(15% 0.121 204)",
+          "oklch(25% 0.121 204)",
+          "oklch(35% 0.121 204)",
+          "oklch(45% 0.121 204)",
+          "oklch(58% 0.121 204)",
+          "oklch(70% 0.121 204)",
+          "oklch(82% 0.121 204)",
+          "oklch(95% 0.121 204)"
+        ]
+      },
+      "yel": {
+        "role": "secondary",
+        "displayName": "Signal Yellow",
+        "canonical": "#f2d23c",
+        "tonalRamp": [
+          "oklch(15% 0.160 96)",
+          "oklch(25% 0.160 96)",
+          "oklch(35% 0.160 96)",
+          "oklch(45% 0.160 96)",
+          "oklch(58% 0.160 96)",
+          "oklch(70% 0.160 96)",
+          "oklch(82% 0.160 96)",
+          "oklch(95% 0.160 96)"
+        ]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Calorimeter Red",
+        "canonical": "#e5483b",
+        "tonalRamp": [
+          "oklch(15% 0.160 29)",
+          "oklch(25% 0.160 29)",
+          "oklch(35% 0.160 29)",
+          "oklch(45% 0.160 29)",
+          "oklch(58% 0.160 29)",
+          "oklch(70% 0.160 29)",
+          "oklch(82% 0.160 29)",
+          "oklch(95% 0.160 29)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the event summary; post and index titles in the same voice."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Featured track titles."
+      },
+      "title-sm": {
+        "displayName": "Small Title",
+        "purpose": "Readout, logbook, curling track, door and prev/next titles (16.5-22px, 88-90% width)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Interface copy, tabular numerals on."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Logbook entry dek and body only."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase field names, table heads, captions, nav (75-80% width)."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Dates, counts, repo paths, reading times, tech lists, code."
+      }
+    },
+    "shadows": [
+      {
+        "name": "drawer-lift",
+        "value": "0 -12px 24px rgba(0,0,0,0.45)",
+        "purpose": "Mobile sticky readout only; the single shadow in the system."
+      }
+    ],
+    "motion": [
+      {
+        "name": "isolate-fade",
+        "value": "opacity 0.18s ease-out",
+        "purpose": "Non-selected detector elements fade to 0.14 when something is isolated; curl labels fade in."
+      },
+      {
+        "name": "track-draw",
+        "value": "1.1s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Load replay: tracks draw out from the vertex via pathLength dash offset; curling tracks delayed 0.35s."
+      },
+      {
+        "name": "replay-appear",
+        "value": "0.5s ease-out 0.8s",
+        "purpose": "Load replay: hit points and labels fade in."
+      },
+      {
+        "name": "tower-fill",
+        "value": "0.6s ease-out, delay 0.9s + i*40ms",
+        "purpose": "Load replay: calorimeter bars appear in sequence."
+      },
+      {
+        "name": "replay-window",
+        "value": "2600ms",
+        "purpose": "Class 'fire' is removed after one replay; skipped entirely under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-desktop",
+        "value": "1100px"
+      },
+      {
+        "name": "post-rail",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile",
+        "value": "820px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky bar nav: condensed uppercase Archivo, dim at rest, ink with a 1px cyan underline when current.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Display</a><a href=\"#\">Logbook</a><a href=\"#\">Tracks</a><a href=\"#\">Detector config</a><a href=\"#\">Contact</a></nav>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-nav{display:flex;gap:2px;background:var(--vac,#07090d);border-bottom:1px solid var(--rule,#1a212b);padding:0 16px}.ds-nav a{position:relative;font:500 12.5px/1 var(--f-label,Archivo,sans-serif);font-stretch:80%;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;color:var(--dim,#8e99a8);padding:18px 12px}.ds-nav a:hover,.ds-nav a[aria-current]{color:var(--ink,#e8ecf1)}.ds-nav a[aria-current]::after{content:'';position:absolute;left:12px;right:12px;bottom:11px;height:1px;background:var(--cyan,#3fd3e0)}.ds-nav a:focus-visible{outline:1px solid var(--cyan,#3fd3e0);outline-offset:3px}"
+    },
+    {
+      "name": "Door",
+      "kind": "custom",
+      "refersTo": "door",
+      "description": "Event-summary entry row: track-language glyph, condensed title, mono meta value on the right.",
+      "html": "<ul class=\"ds-doors\"><li><a class=\"c\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" aria-hidden=\"true\"><path d=\"M2 16L16 2\" stroke=\"#3FD3E0\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg><span class=\"t\">Projects</span><span class=\"m\">12 public repos</span></a></li><li><a href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" aria-hidden=\"true\"><path d=\"M2 9H16\" stroke=\"#E8ECF1\" stroke-width=\"1.5\" stroke-dasharray=\"3 2.5\"/></svg><span class=\"t\">Logbook</span><span class=\"m\">first entry soon</span></a></li></ul>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-doors{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule,#1a212b);background:var(--vac,#07090d);max-width:360px}.ds-doors a{display:grid;grid-template-columns:18px 1fr auto;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--rule,#1a212b);text-decoration:none;color:var(--ink,#e8ecf1)}.ds-doors .t{font:600 16.5px/1.2 var(--f-label,Archivo,sans-serif);font-stretch:90%}.ds-doors .m{font:400 12.5px/1 var(--f-mono,monospace);color:var(--dim,#8e99a8)}.ds-doors a:hover .t,.ds-doors a:focus-visible .t{text-decoration:underline;text-underline-offset:.25em}.ds-doors a.c:hover .t{color:var(--cyan,#3fd3e0)}.ds-doors a:focus-visible{outline:1px solid var(--cyan,#3fd3e0);outline-offset:3px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Static technology label: condensed Archivo, 1px rule-2 border, square.",
+      "html": "<ul class=\"ds-tags\"><li>Go</li><li>MinIO</li><li>PostgreSQL</li><li>Docker</li></ul>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:12px;background:var(--vac,#07090d)}.ds-tags li{font:500 12px/1 var(--f-label,Archivo,sans-serif);font-stretch:82%;color:var(--ink-2,#c3cad4);border:1px solid var(--rule-2,#242d39);padding:5px 7px 4px}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "text-link",
+      "description": "Standalone action link: Archivo 600 at 90% width over a faint 1px underline; hover takes a signal colour.",
+      "html": "<a class=\"ds-link\" href=\"#\">github.com/Osmait/Continuity-Lab</a> <a class=\"ds-link y\" href=\"#\">Back to the logbook</a>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-link{display:inline-flex;margin:12px 16px 12px 0;font:600 14.5px/1 var(--f-label,Archivo,sans-serif);font-stretch:90%;color:var(--ink,#e8ecf1);text-decoration:none;border-bottom:1px solid var(--faint,#6b7686);padding-bottom:5px;transition:color .18s ease-out,border-color .18s ease-out}.ds-link:hover{color:var(--cyan,#3fd3e0);border-color:currentColor}.ds-link.y:hover{color:var(--yel,#f2d23c)}.ds-link:focus-visible{outline:1px solid var(--cyan,#3fd3e0);outline-offset:3px}"
+    },
+    {
+      "name": "Readout",
+      "kind": "card",
+      "refersTo": "readout",
+      "description": "The isolation panel: condensed header with mono state, classification in the category colour, title, summary, mono field list.",
+      "html": "<aside class=\"ds-ro\"><div class=\"h\"><h2>Readout</h2><span class=\"s\">isolated: Continuity Lab</span></div><p class=\"k\">Straight track · Backend &amp; distributed systems</p><h3>Continuity Lab</h3><p class=\"x\">Git Smart HTTP served by disposable nodes, while MinIO holds the authoritative write-ahead log.</p><dl><dt>Tech</dt><dd>Go, MinIO, S3, Git, Docker</dd><dt>Updated</dt><dd>Aug 2026</dd></dl></aside>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-ro{background:var(--vac,#07090d);color:var(--ink,#e8ecf1);padding:18px 24px 24px;border-top:1px solid var(--rule,#1a212b);max-width:360px;font-family:var(--f-body,sans-serif)}.ds-ro .h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.ds-ro h2{margin:0;font:600 13px/1 var(--f-label,Archivo,sans-serif);font-stretch:80%;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2,#c3cad4)}.ds-ro .s{font:400 12px/1 var(--f-mono,monospace)}.ds-ro .k{margin:0 0 8px;font:500 11.5px/1 var(--f-label,Archivo,sans-serif);font-stretch:78%;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan,#3fd3e0)}.ds-ro h3{margin:0 0 8px;font:600 22px/1.15 var(--f-label,Archivo,sans-serif);font-stretch:88%;letter-spacing:-.01em}.ds-ro .x{margin:0 0 12px;font-size:14.5px;line-height:1.55;color:var(--ink-2,#c3cad4)}.ds-ro dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:0}.ds-ro dt{font:500 11px/1.6 var(--f-label,Archivo,sans-serif);font-stretch:78%;letter-spacing:.08em;text-transform:uppercase;color:var(--faint,#6b7686)}.ds-ro dd{margin:0;font:400 12.5px/1.6 var(--f-mono,monospace);color:var(--ink-2,#c3cad4)}"
+    },
+    {
+      "name": "Isolatable Track",
+      "kind": "custom",
+      "refersTo": "readout",
+      "description": "Detector selectables: hover or focus isolates one, the rest fade to 14%.",
+      "html": "<svg class=\"ds-det\" viewBox=\"-10 -60 220 120\" width=\"330\" height=\"180\"><circle r=\"3\" fill=\"#E8ECF1\"/><g class=\"t c\" tabindex=\"0\" role=\"button\" aria-label=\"Backend project\"><path class=\"hit\" d=\"M4 0L200 -50\"/><path class=\"ln\" d=\"M4 0L200 -50\"/></g><g class=\"t y\" tabindex=\"0\" role=\"button\" aria-label=\"Tool project\"><path class=\"hit\" d=\"M4 0C60 10 120 60 190 30\"/><path class=\"ln\" d=\"M4 0C60 10 120 60 190 30\"/></g><g class=\"t ph\" tabindex=\"0\" role=\"button\" aria-label=\"Logbook entry\"><path class=\"hit\" d=\"M4 0L200 5\"/><path class=\"ln\" d=\"M4 0L200 5\"/></g></svg>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-det{background:var(--vac,#07090d)}.ds-det .t{cursor:pointer;outline:none;transition:opacity .18s ease-out}.ds-det:hover .t:not(:hover),.ds-det:focus-within .t:not(:focus){opacity:.14}.ds-det .hit{fill:none;stroke:transparent;stroke-width:16}.ds-det .ln{fill:none;stroke-width:1.9;stroke-linecap:round}.ds-det .c .ln{stroke:var(--cyan,#3fd3e0)}.ds-det .y .ln{stroke:var(--yel,#f2d23c);stroke-width:1.5}.ds-det .ph .ln{stroke:var(--ink,#e8ecf1);stroke-dasharray:6 5;stroke-width:1.4}.ds-det .t:hover .ln,.ds-det .t:focus .ln{stroke-width:2.8}"
+    },
+    {
+      "name": "Logbook Empty State",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Shown until posts exist: a steel detector with one unrecorded dashed photon and an honest line.",
+      "html": "<div class=\"ds-empty\"><svg viewBox=\"-60 -60 120 120\" width=\"96\" height=\"96\" aria-hidden=\"true\"><circle r=\"54\" fill=\"none\" stroke=\"#5C7896\" stroke-opacity=\".6\"/><circle r=\"36\" fill=\"none\" stroke=\"#5C7896\" stroke-opacity=\".35\" stroke-dasharray=\"2 3\"/><circle r=\"18\" fill=\"none\" stroke=\"#5C7896\" stroke-opacity=\".35\" stroke-dasharray=\"2 3\"/><path d=\"M4 -2L50 -20\" stroke=\"#E8ECF1\" stroke-width=\"1.4\" stroke-dasharray=\"5 4\" opacity=\".35\"/><circle r=\"2.5\" fill=\"#E8ECF1\"/></svg><div><p class=\"h\">No entries recorded yet.</p><p>The first entry is on its way.</p><p class=\"sub\">Follow along with the <a href=\"#\">RSS feed</a>.</p></div></div>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-empty{display:grid;grid-template-columns:96px minmax(0,48ch);gap:28px;align-items:center;padding:28px 16px;background:var(--vac,#07090d);border-top:1px solid var(--rule-2,#242d39);border-bottom:1px solid var(--rule,#1a212b);font-family:var(--f-body,sans-serif)}.ds-empty p{margin:0 0 10px;color:var(--ink-2,#c3cad4);font-size:16px}.ds-empty .h{font:600 22px/1.2 var(--f-label,Archivo,sans-serif);font-stretch:88%;color:var(--ink,#e8ecf1)}.ds-empty .sub{margin:0;color:var(--dim,#8e99a8);font-size:14.5px}.ds-empty a{color:inherit;text-underline-offset:.22em}.ds-empty a:hover{color:var(--cyan,#3fd3e0)}"
+    },
+    {
+      "name": "Code Block",
+      "kind": "card",
+      "refersTo": "code-block",
+      "description": "Article code on the code bed, detector Shiki colours.",
+      "html": "<pre class=\"ds-pre\"><code><span class=\"k\">func</span> <span class=\"f\">replay</span>(wal <span class=\"t\">Log</span>) <span class=\"t\">error</span> {\n  <span class=\"c\">// rebuild from snapshot</span>\n  <span class=\"k\">return</span> wal.<span class=\"f\">Apply</span>(<span class=\"s\">\"head\"</span>, <span class=\"s\">42</span>)\n}</code></pre>",
+      "css": ":host{--vac:#07090d;--panel:#0a0d12;--code:#0e131a;--ink:#e8ecf1;--ink-2:#c3cad4;--dim:#8e99a8;--faint:#6b7686;--rule:#1a212b;--rule-2:#242d39;--steel:#5c7896;--yel:#f2d23c;--cyan:#3fd3e0;--red:#e5483b;--f-label:Archivo,'Arial Narrow',sans-serif;--f-body:'Hanken Grotesk',system-ui,sans-serif;--f-read:'Source Serif 4',Georgia,serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}.ds-pre{margin:0;padding:16px 18px 18px;background:var(--code,#0e131a);border:1px solid var(--rule-2,#242d39);color:#d5dbe3;font:400 14.5px/1.7 var(--f-mono,monospace);overflow-x:auto}.ds-pre .k{color:#3fd3e0}.ds-pre .s{color:#f2d23c}.ds-pre .f{color:#fff}.ds-pre .t{color:#9fb6cf}.ds-pre .c{color:#7f8a99;font-style:italic}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Frozen Collision",
+    "overview": "The site is one particle-detector event display. José's public work leaves a vertex labelled `vertex: osmait` and flies outward through a steel-ringed detector: projects are charged tracks, logbook entries are neutral dashed photons, and technologies are red calorimeter towers whose height is counted from the real project data. The detector is the portfolio; nothing on the page is a card, a hero, or a grid of tiles. Everything else on the site (sections, the blog, the post template, the 404) is written in the same instrument language: run headers, readouts, logbooks, calibration tables, service records.\n\nThe mood is a control-room printout at night: near-black vacuum, crisp 1px hairlines, condensed engineering labels, tabular figures, and saturated colour reserved for data. It is dense but legible, and it tells the truth: every number on the screen (track count, tower heights, \"2/12\", \"0 logbook entries\") is computed from the repo's data files at build time, so the visual system and the content rules are the same thing.\n\nRejected by the build: the hero-plus-card-grid developer portfolio, the old bento-grid dark look, glow, gradients, rounded containers, and decorative colour.",
+    "keyCharacteristics": [
+      "One dark world (`color-scheme: dark`), no light theme.",
+      "Colour is category, never decoration: cyan backend, yellow native/tooling, dashed white logbook, red technology energy, steel detector structure.",
+      "Shape is weight: straight tracks are featured projects, curling tracks are smaller ones with radius from commit count.",
+      "Archivo's width axis does the typographic work; four faces, each with a fixed job.",
+      "Flat, square, hairline-ruled; depth comes from opacity and isolation, not shadows.",
+      "Honest data: public repos only, counts derived, empty states stated plainly."
+    ],
+    "rules": [
+      {
+        "name": "The One Meaning Rule",
+        "body": "Cyan means backend, yellow means native apps and tools, red means technology energy, dashed white means a logbook entry, steel means structure. A new surface may reuse a signal colour only for that meaning or for the interaction role it already holds (cyan focus and link hover, yellow reading highlight).",
+        "section": "colors"
+      },
+      {
+        "name": "The Dashed White Logbook Rule",
+        "body": "Logbook entries are drawn as dashed ink lines (`6 5` dash in the display, `4 3` in legends and glyphs), never in a category colour. They are neutral because the logbook is not a project category, and because it launched empty.",
+        "section": "colors"
+      },
+      {
+        "name": "The Structure Is Steel Rule",
+        "body": "Anything that is apparatus rather than data is `steel` at reduced opacity. If it glows, fills with a signal colour, or competes with a track, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Is Rank Rule",
+        "body": "Hierarchy is set by Archivo's width axis together with size: labels condensed to 75–80%, headings 86%, clickable titles 88–92%. Never stretch Hanken, Source Serif or JetBrains Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Figures Are Mono Rule",
+        "body": "Any value a reader might compare (dates, counts, minutes, `n of 12`, repo paths) is set in JetBrains Mono or tabular Hanken. Prose never carries a naked statistic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Serif Is For Reading Rule",
+        "body": "Source Serif 4 appears only in a logbook entry's dek and body. Interface copy is Hanken Grotesk.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rows Not Cards Rule",
+        "body": "Collections are ruled rows and tables: a `rule-2` hairline opens the list, a `rule` hairline follows each item. No boxed cards, no tile grids.",
+        "section": "layout"
+      },
+      {
+        "name": "The No Glow Rule",
+        "body": "Tracks, towers and signal colours are drawn as crisp strokes and flat fills. No blur, no bloom, no gradient, no coloured shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** derive every count, bar height and track radius from `src/data/projects.ts` and the blog collection at build time. If a number is on screen, it must be computed from real data.",
+      "**Do** list only public GitHub repositories; private repos never appear, not even as unlinked names.",
+      "**Do** keep claims to what the data and PRODUCT.md support: current role (Software Engineer, SkoolScout LLC, contract, remote, since Mar 2024), no city, no invented metrics, testimonials or employer details.",
+      "**Do** state emptiness plainly (\"No entries recorded yet.\", \"first entry soon\", \"0\") and keep the empty state as a designed part of the page. Never add sample posts to fill it.",
+      "**Do** keep each signal colour to its one meaning (cyan backend, yellow native/tooling, red technology energy, dashed white logbook, steel structure).",
+      "**Do** rank type with Archivo's width axis: 75–80% labels, 86% headlines, 88–92% clickable titles.",
+      "**Do** separate content with 1px `rule`/`rule-2` hairlines and ruled rows, square corners throughout.",
+      "**Do** make every detector element keyboard focusable with a descriptive label, and let the readout, not SVG text, carry names on small screens.",
+      "**Do** ship the detector fully drawn and play the load replay only once, only when reduced motion is not requested."
+    ],
+    "donts": [
+      "**Don't** build a hero-plus-card-grid or bento layout; collections are rows, the home is the detector.",
+      "**Don't** add glow, blur, gradients, coloured shadows or rounded containers; the drawer lift on the mobile readout is the only shadow.",
+      "**Don't** colour a logbook entry yellow or cyan, or use red for anything but technology energy and error/draft states.",
+      "**Don't** stretch Hanken Grotesk, Source Serif 4 or JetBrains Mono, or use the serif for interface copy.",
+      "**Don't** loop animations or add scroll-triggered reveals; motion is the one load replay, 180ms isolation fades, and the post's reading-progress hairline.",
+      "**Don't** show SVG labels below 640px wide, where they would render at unreadable sizes."
+    ]
+  }
+}

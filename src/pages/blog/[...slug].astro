@@ -1,0 +1,461 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Footer from "../../components/Footer.astro";
+import { PROFILE } from "../../data/profile";
+import { getPosts, readingMinutes, isoDate, type Post } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1] ?? null, older: posts[i + 1] ?? null, n: posts.length - i },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer: Post | null;
+  older: Post | null;
+  n: number;
+}
+const { post, newer, older, n } = Astro.props;
+const { Content, headings } = await render(post);
+const minutes = readingMinutes(post.body);
+const date = isoDate(post.data.pubDate);
+const toc = headings.filter((h) => h.depth === 2);
+const entry = String(n).padStart(3, "0");
+---
+
+<Base title={`${post.data.title} · Logbook · ${PROFILE.name}`} description={post.data.description} current="logbook" type="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+    {post.data.updatedDate && <meta property="article:modified_time" content={post.data.updatedDate.toISOString()} />}
+  </Fragment>
+  <span class="prog" id="prog" aria-hidden="true" slot="bar"></span>
+
+  <main id="main" class="entry">
+    <header class="head">
+      <h1>{post.data.title}</h1>
+      <p class="dek">{post.data.description}</p>
+      <p class="by">Recorded by <a href="/">{PROFILE.name}</a></p>
+    </header>
+
+    <aside class="rail" aria-label="Entry record">
+      <div class="rail-in">
+        <dl class="fields">
+          <div><dt>Entry</dt><dd>{entry}</dd></div>
+          {post.data.draft && <div class="draft"><dt>Status</dt><dd>Draft</dd></div>}
+          <div><dt>Recorded</dt><dd>{date}</dd></div>
+          {post.data.updatedDate && <div><dt>Updated</dt><dd>{isoDate(post.data.updatedDate)}</dd></div>}
+          <div><dt>Reading</dt><dd>{minutes} min</dd></div>
+          {post.data.tags.length > 0 && <div><dt>Tags</dt><dd>{post.data.tags.join(", ")}</dd></div>}
+        </dl>
+        {
+          toc.length > 1 && (
+            <nav class="toc" aria-label="In this entry">
+              <h2>In this entry</h2>
+              <ol>
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+      </div>
+    </aside>
+
+    <article class="body prose">
+      <Content />
+    </article>
+
+    <div class="endrec">
+      <nav class="pn" aria-label="Adjacent entries">
+        {
+          older ? (
+            <a href={`/blog/${older.id}/`}>
+              <span class="l">Previous entry</span>
+              <b>{older.data.title}</b>
+            </a>
+          ) : (
+            <div class="none">
+              <span class="l">Previous entry</span>
+              <b>None: this is the first entry</b>
+            </div>
+          )
+        }
+        {
+          newer ? (
+            <a href={`/blog/${newer.id}/`}>
+              <span class="l">Next entry</span>
+              <b>{newer.data.title}</b>
+            </a>
+          ) : (
+            <div class="none">
+              <span class="l">Next entry</span>
+              <b>Nothing newer yet</b>
+            </div>
+          )
+        }
+      </nav>
+      <a class="back" href="/blog">
+        <svg width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H2M6 1L2 5l4 4" fill="none" stroke="currentColor" stroke-width="1.4"></path></svg>
+        Back to the logbook
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  const prog = document.getElementById("prog");
+  const art = document.querySelector<HTMLElement>(".prose");
+  const links = [...document.querySelectorAll<HTMLAnchorElement>(".toc a")];
+  const heads = links.map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))));
+  const onScroll = () => {
+    if (!art || !prog) return;
+    const b = art.getBoundingClientRect(),
+      total = b.height - innerHeight * 0.6;
+    prog.style.width = Math.max(0, Math.min(1, -b.top / total)) * 100 + "%";
+    let cur = 0;
+    heads.forEach((h, i) => {
+      if (h && h.getBoundingClientRect().top < 140) cur = i;
+    });
+    links.forEach((a, i) => a.classList.toggle("cur", i === cur && b.top < 0));
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+
+<style>
+  .prog {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--yel);
+    width: 0;
+  }
+  .entry {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 68ch);
+    grid-template-areas: "rail head" "rail body" "rail end";
+    column-gap: 72px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 64px var(--gut) 40px;
+    justify-content: center;
+  }
+  .head {
+    grid-area: head;
+    margin-bottom: 44px;
+  }
+  .rail {
+    grid-area: rail;
+  }
+  .rail-in {
+    position: sticky;
+    top: calc(var(--bar-h) + 32px);
+  }
+  .body {
+    grid-area: body;
+  }
+  .endrec {
+    grid-area: end;
+    margin-top: 56px;
+  }
+
+  .fields .draft dd {
+    color: var(--red);
+  }
+  h1 {
+    font: 620 clamp(38px, 5.2vw, 62px)/1.02 var(--f-label);
+    font-stretch: 86%;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .dek {
+    font: 400 21px/1.5 var(--f-read);
+    color: var(--ink-2);
+    margin: 0 0 20px;
+    max-width: 58ch;
+  }
+  .by {
+    font-size: 14.5px;
+    color: var(--dim);
+    margin: 0;
+  }
+
+  .fields {
+    margin: 0 0 28px;
+    border-top: 1px solid var(--rule-2);
+  }
+  .fields div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .fields dt {
+    font: 500 11px/1.6 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .fields dd {
+    margin: 0;
+    font: 400 12.5px/1.6 var(--f-mono);
+    color: var(--ink-2);
+    text-align: right;
+  }
+  .toc h2 {
+    font: 600 11.5px/1 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin: 0 0 10px;
+  }
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: t;
+  }
+  .toc li a {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    padding: 5px 0;
+    font: 500 14.5px/1.35 var(--f-label);
+    font-stretch: 90%;
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  .toc li a::before {
+    counter-increment: t;
+    content: counter(t);
+    font: 400 11.5px/1.7 var(--f-mono);
+    color: var(--faint);
+  }
+  .toc li a:hover,
+  .toc li a:global(.cur) {
+    color: var(--yel);
+  }
+
+  /* Markdown content */
+  .prose {
+    font: 400 19px/1.7 var(--f-read);
+    color: var(--ink);
+    max-width: 68ch;
+    min-width: 0;
+  }
+  .prose :global(p) {
+    margin: 0 0 1.15em;
+  }
+  .prose :global(h2) {
+    font: 620 30px/1.12 var(--f-label);
+    font-stretch: 88%;
+    letter-spacing: -0.015em;
+    margin: 2.1em 0 0.7em;
+    text-wrap: balance;
+  }
+  .prose :global(h3) {
+    font: 600 22px/1.2 var(--f-label);
+    font-stretch: 90%;
+    margin: 1.8em 0 0.6em;
+  }
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+  .prose :global(a) {
+    color: var(--ink);
+    text-decoration-color: var(--cyan);
+  }
+  .prose :global(a:hover) {
+    color: var(--cyan);
+  }
+  .prose :global(:not(pre) > code) {
+    font: 400 0.84em/1 var(--f-mono);
+    background: #131922;
+    border: 1px solid var(--rule-2);
+    padding: 0.12em 0.36em;
+    color: #dde3ea;
+    overflow-wrap: anywhere;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.2em;
+    padding-left: 1.3em;
+  }
+  .prose :global(li) {
+    margin: 0 0 0.5em;
+  }
+  .prose :global(li::marker) {
+    color: var(--steel);
+  }
+  .prose :global(pre) {
+    margin: 1.8em 0 1.9em;
+    padding: 16px 18px 18px;
+    background: var(--code) !important;
+    border: 1px solid var(--rule-2);
+    overflow-x: auto;
+    font: 400 14.5px/1.7 var(--f-mono);
+    tab-size: 2;
+  }
+  .prose :global(pre code) {
+    font: inherit;
+  }
+  .prose :global(blockquote) {
+    margin: 1.9em 0;
+    padding: 16px 20px 18px;
+    border: 1px solid var(--steel);
+    background: #0e141c;
+    color: var(--ink-2);
+  }
+  .prose :global(blockquote p:last-child) {
+    margin: 0;
+  }
+  .prose :global(img),
+  .prose :global(svg) {
+    max-width: 100%;
+    height: auto;
+  }
+  .prose :global(figure) {
+    margin: 2.2em 0;
+    border-top: 1px solid var(--rule-2);
+    border-bottom: 1px solid var(--rule-2);
+    padding: 18px 0 14px;
+  }
+  .prose :global(figcaption) {
+    font: 400 15px/1.55 var(--f-body);
+    color: var(--dim);
+    margin-top: 12px;
+  }
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--rule-2);
+    margin: 2.4em 0;
+  }
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font: 400 15px/1.5 var(--f-body);
+    margin: 1.6em 0;
+    display: block;
+    overflow-x: auto;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    text-align: left;
+    padding: 8px 14px 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prose :global(th) {
+    font: 500 11.5px/1.4 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .pn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule-2);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pn > * {
+    padding: 18px 20px 20px 0;
+    text-decoration: none;
+  }
+  .pn > * + * {
+    border-left: 1px solid var(--rule);
+    padding-left: 20px;
+    text-align: right;
+  }
+  .l {
+    display: block;
+    font: 500 11px/1 var(--f-label);
+    font-stretch: 78%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 8px;
+  }
+  .pn b {
+    display: block;
+    font: 600 18px/1.25 var(--f-label);
+    font-stretch: 90%;
+  }
+  .pn .none b {
+    color: var(--dim);
+    font-weight: 500;
+  }
+  .pn a:hover b {
+    color: var(--yel);
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    font: 600 15px/1 var(--f-label);
+    font-stretch: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid var(--faint);
+    padding-bottom: 5px;
+  }
+  .back:hover {
+    color: var(--yel);
+    border-color: var(--yel);
+  }
+
+  @media (max-width: 1000px) {
+    .entry {
+      grid-template-columns: minmax(0, 68ch);
+      grid-template-areas: "head" "rail" "body" "end";
+      column-gap: 0;
+      padding-top: 40px;
+    }
+    .rail-in {
+      position: static;
+      margin-bottom: 36px;
+    }
+    .toc {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .prose {
+      font-size: 18px;
+    }
+    .prose :global(h2) {
+      font-size: 26px;
+    }
+    .dek {
+      font-size: 19px;
+    }
+    .prose :global(pre) {
+      font-size: 13px;
+      margin-left: calc(var(--gut) * -1);
+      margin-right: calc(var(--gut) * -1);
+      border-left: 0;
+      border-right: 0;
+    }
+    .pn {
+      grid-template-columns: 1fr;
+    }
+    .pn > * + * {
+      border-left: 0;
+      border-top: 1px solid var(--rule);
+      padding-left: 0;
+      text-align: left;
+    }
+  }
+</style>

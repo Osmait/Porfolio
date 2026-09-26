@@ -1,0 +1,70 @@
+---
+import Base from "../../layouts/Base.astro";
+import Logbook from "../../components/Logbook.astro";
+import Footer from "../../components/Footer.astro";
+import { getPosts, toLite } from "../../lib/posts";
+
+const posts = (await getPosts()).map(toLite);
+---
+
+<Base
+  title="Logbook · José Saúl Burgos"
+  description="Notes on backend and systems internals by José Saúl Burgos: databases, syscalls, queues and the services built on top of them."
+  current="logbook"
+>
+  <main id="main" class="sec">
+    <header class="sec-h">
+      <h1>Logbook</h1>
+      <p>
+        {posts.length === 0 ? "Notes on backend and systems internals, traced from the outside in." : `${posts.length} ${posts.length === 1 ? "entry" : "entries"}, newest first.`}
+      </p>
+    </header>
+    <Logbook posts={posts} />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .sec {
+    padding: 72px var(--gut) 88px;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: calc(100svh - var(--bar-h) - 110px);
+  }
+  .sec-h {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 36px;
+  }
+  h1 {
+    margin: 0;
+    font: 620 58px/1 var(--f-label);
+    font-stretch: 86%;
+    letter-spacing: -0.02em;
+  }
+  .sec-h p {
+    margin: 0;
+    color: var(--dim);
+    font-size: 15.5px;
+    justify-self: end;
+    text-align: right;
+  }
+  @media (max-width: 820px) {
+    .sec {
+      padding-top: 48px;
+    }
+    .sec-h {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    h1 {
+      font-size: 44px;
+    }
+    .sec-h p {
+      justify-self: start;
+      text-align: left;
+    }
+  }
+</style>

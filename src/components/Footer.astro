@@ -1,0 +1,36 @@
+---
+import { PROFILE } from "../data/profile";
+---
+
+<footer>
+  <span><b>{PROFILE.name}</b> · {PROFILE.handle} · © {new Date().getFullYear()}</span>
+  <span>
+    <a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>{" · "}<a href={PROFILE.links.github}>GitHub</a>{" · "}<a
+      href={PROFILE.links.linkedin}>LinkedIn</a
+    >{" · "}<a href="/rss.xml">RSS</a>
+  </span>
+</footer>
+
+<style>
+  footer {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 26px var(--gut) 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+    color: var(--dim);
+    font-size: 13.5px;
+  }
+  b {
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  a {
+    color: var(--ink-2);
+  }
+  a:hover {
+    color: var(--cyan);
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base title="Lost track · José Saúl Burgos" description="This page does not exist.">
+  <main id="main" class="lost">
+    <p class="code">404 · no hits recorded</p>
+    <h1>This track left the detector.</h1>
+    <p>The page you were looking for does not exist, or it moved.</p>
+    <p><a href="/">Back to the event display</a> · <a href="/blog">Logbook</a></p>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .lost {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 120px var(--gut);
+    min-height: calc(100svh - var(--bar-h) - 110px);
+  }
+  .code {
+    font: 400 13px/1 var(--f-mono);
+    color: var(--red);
+  }
+  h1 {
+    font: 620 clamp(38px, 6vw, 72px)/1 var(--f-label);
+    font-stretch: 86%;
+    letter-spacing: -0.025em;
+    margin: 16px 0;
+  }
+  p {
+    color: var(--ink-2);
+  }
+  a:hover {
+    color: var(--cyan);
+  }
+</style>
